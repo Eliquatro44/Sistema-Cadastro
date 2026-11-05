@@ -1,10 +1,9 @@
-package dev.Winners.SistemaDeCadastro;
+package dev.Winners.SistemaDeCadastro.Pessoas;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import dev.Winners.SistemaDeCadastro.Missoes.MissoesModel;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 //Ele transforma uma classe comum em uma entidade no BD
 @Entity
@@ -13,11 +12,14 @@ public class NovoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Vai ser gerado automaticamente números sequenciais
-    Long id;
-    String nome;
-    String email;
-    int idade;
-
+    private Long id;
+    private String nome;
+    private String email;
+    private int idade;
+    // @ManyToOne - uma pessoa tem uma unica tarefa
+    @ManyToOne
+    @JoinColumn(name = "missoes_id") // Foreing Key ou Chave Estrangeira
+    private MissoesModel missoes;
 
     public NovoModel() {
 
